@@ -13,7 +13,7 @@ export default function Home() {
   const [idbooks, setIdbooks] = useState('')
   async function getBookId(id) {
     try {
-      const res = await fetch(`https://crud-bookshop.vercel.app/api/book/${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/book/${id}`, {
         method: "GET",
         cache: "no-store"
       })
@@ -35,7 +35,7 @@ export default function Home() {
   async function handleUpdate(id) {
 
     try {
-      const res = await fetch(`https://crud-bookshop.vercel.app/api/book/${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/book/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "Appication/json"
@@ -57,7 +57,7 @@ export default function Home() {
     const confirmed = confirm("Do you want to Delete Book ?")
 
     if (confirmed) {
-      const res = await fetch(`https://crud-bookshop.vercel.app/api/book/${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/book/${id}`, {
         method: "Delete"
       })
       if (res.ok) {
@@ -71,7 +71,7 @@ export default function Home() {
 
   async function getBooks() {
     try {
-      const res = await fetch("https://crud-bookshop.vercel.app/api/book", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/book`, {
         method: "GET",
         cache: "no-store"
       })
@@ -111,7 +111,7 @@ export default function Home() {
       setCheckError(false)
     }
     try {
-      const res = await fetch('https://crud-bookshop.vercel.app/api/book', {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/book`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
