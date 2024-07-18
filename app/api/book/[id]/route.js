@@ -22,15 +22,3 @@ export async function DELETE(req){
     await Books.findByIdAndDelete(id)
     return NextResponse.json({message:"Book Deleted"},{status:200})
 }
-
-export async function generateStaticParams() {
-    try {
-        await connectDB();
-        const books = await Books.find({}, { _id: 1 }).exec();
-        const paths = books.map(book => ({ params: { id: book._id.toString() } }));
-        return paths;
-    } catch (error) {
-        console.error('Failed to fetch book IDs for static generation:', error);
-        return [];
-    }
-}
